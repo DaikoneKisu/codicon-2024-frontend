@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { NavBar } from './miscelaneous/NavBar'
+import { SideNavBar } from './miscelaneous/SideNavBar'
 
 interface Props {
   children: ReactElement | JSX.Element
@@ -8,7 +8,7 @@ interface Props {
 export const Layout = ({ children }: Props) => {
   return (
     <>
-      <NavBar />
+      <SideNavBar />
       {children}
     </>
   )
