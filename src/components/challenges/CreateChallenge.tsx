@@ -24,11 +24,11 @@ export const CreateChallenge = () => {
     e.preventDefault()
     console.log(challenge)
     try {
-      const response = await fetch('http://localhost:3000/challenges', {
+      const response = await fetch(`${import.meta.env.CHALLENGES_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${proccess.env.TOKEN}`
+          'Authorization': `Bearer ${import.meta.env.TOKEN}`
         },
         body: JSON.stringify(challenge)
       })
