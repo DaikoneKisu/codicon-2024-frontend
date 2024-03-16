@@ -1,13 +1,11 @@
 import type { Challenge } from './challengetype.d.ts'
 import { ChallengeCategory, ChallengeType, ChallengeDifficulty } from './challengesenums.ts'
-// import { useNavigate } from 'react-router-dom'
 
 import { ChangeEvent, FormEvent } from 'react'
 
 import { useState } from 'react'
 
 export const CreateChallenge = () => {
-  // const navigate = useNavigate()
   const [points] = useState<Array<number>>([10, 70, 300])
 
   const [challenge, setChallenge] = useState<Challenge>({
@@ -20,42 +18,35 @@ export const CreateChallenge = () => {
     limitPlayers: 0
   })
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(challenge)
     try {
-      const response = await fetch(`${import.meta.env.CHALLENGES_URL}`, {
+      await fetch(`${import.meta.env.BACKEND_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.TOKEN}`
+          'Authorization': `Bearer ${import.meta.env.CHALLENGES_URL}`
         },
         body: JSON.stringify(challenge)
       })
-
-      if (!response.ok) {
-        console.log(response.statusText)
-      }
-
-      // navigate('/')
-      // return
     } catch (err) {
       throw new Error('Error creating challenge')
     }
   }
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
 
-    if (name === 'points' || name === 'limitPlayers') {
-      setChallenge({
-        ...challenge,
-        [name]: parseInt(value)
-      })
-      return
-    }
-    setChallenge({
-      ...challenge,
-      [name]: value
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setChallenge((prevChallenge) => {
+      if (e.target.name === 'points' || e.target.name === 'limitPlayers') {
+        return {
+          ...prevChallenge,
+          [e.target.name]: parseInt(e.target.value)
+        }
+      } else {
+        return {
+          ...prevChallenge,
+          [e.target.name]: e.target.value
+        }
+      }
     })
   }
 
@@ -64,7 +55,7 @@ export const CreateChallenge = () => {
       <div className="mx-auto  grid max-w-4xl items-center gap-16 rounded-md bg-white p-8 font-[sans-serif] text-[#333] shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
         <h1 className="text-3xl font-extrabold"> Creating Challenge</h1>
 
-        <form className="ml-auo space-y-4" onSubmit={() => handleSubmit}>
+        <form className="ml-auo space-y-4" onSubmit={(e) => void handleSubmit(e)}>
           <input
             type="text"
             name="name"
@@ -85,17 +76,19 @@ export const CreateChallenge = () => {
           {/* challenges point entry */}
           <select
             onChange={handleChange}
+            name="points"
             className="w-full rounded-md border px-4 py-2.5 text-sm outline-[#007bff]"
           >
-            {points.map((point, index) => (
-              <option key={index} value={point}>
-                {point}
+            {points.map((points, index) => (
+              <option key={index} value={points}>
+                {points}
               </option>
             ))}
           </select>
           {/* challenge type entry */}
           <select
             onChange={handleChange}
+            name="type"
             className="w-full rounded-md border px-4 py-2.5 text-sm outline-[#007bff]"
           >
             {Object.values(ChallengeType).map((type, index) => (
@@ -107,6 +100,7 @@ export const CreateChallenge = () => {
           {/* difficults entry point */}
           <select
             onChange={handleChange}
+            name="difficulty"
             className="w-full rounded-md border px-4 py-2.5 text-sm outline-[#007bff]"
           >
             {Object.values(ChallengeDifficulty).map((difficulty, index) => (
@@ -118,6 +112,7 @@ export const CreateChallenge = () => {
           {/* challenges category entry point */}
           <select
             onChange={handleChange}
+            name="category"
             className="w-full rounded-md border px-4 py-2.5 text-sm outline-[#007bff]"
           >
             {Object.values(ChallengeCategory).map((category, index) => (
