@@ -2,23 +2,31 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 // import { Link } from "react-router-dom" this import will be used for the navigation
 import '../../index.css'
 
+/** Represents user credentials. */
+interface Credentials {
+  /** The username associated with the credentials. */
+  username: string
+
+  /** The password associated with the credentials. */
+  password: string
+
+  /** Indicates whether the password should be displayed or not. */
+  showPassword: boolean
+}
+
+/** Represents a login component. */
 export const Login = () => {
-  //Credentials type for use state
-  interface Credentials {
-    username: string
-    password: string
-    showPassword: boolean
-  }
-
-  //initialize navigate function from react-router-dom (const navigate = useNavigate())
-
+  // Initialize state for credentials
   const [credentials, setCredentials] = useState<Credentials>({
     username: '',
     password: '',
     showPassword: false
   })
 
-  //handle change function for input fields
+  /**
+   * Handles changes in the input fields.
+   * @param e - The event object representing the change.
+   */
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCredentials({
       ...credentials,
@@ -26,10 +34,14 @@ export const Login = () => {
     })
   }
 
+  /**
+   * Handles a submition of the input fields.
+   * @param e - The event object representing the form submition
+   */
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    //later add the navigate() function from react-router-dom
+    // TO-DO: add the navigate() function from react-router-dom
     // add validation for the credentials
     console.log('auntenticated')
   }
