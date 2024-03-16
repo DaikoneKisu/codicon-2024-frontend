@@ -82,7 +82,7 @@ export const Login = () => {
               name="password"
               placeholder="Type your password"
               value={credentials.password}
-              minLength={9}
+              minLength={8}
               maxLength={32}
               onChange={handleChange}
               required
