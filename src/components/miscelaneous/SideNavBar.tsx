@@ -31,6 +31,12 @@ export const SideNavBar = () => {
             </svg>
             <span className="">Retos</span>
           </Link>
+          <Link
+            to="/login"
+            className="w-fit justify-center rounded-md px-2 py-2 text-center text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-blue-500 hover:text-base hover:text-white"
+          >
+            <span className="">Retanos</span>
+          </Link>
         </div>
       </div>
     </div>
