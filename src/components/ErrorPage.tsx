@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom'
+import { useRouteError, Link } from 'react-router-dom'
 
 export const ErrorPage = () => {
   const error = useRouteError() as { status: number }
@@ -15,9 +15,12 @@ export const ErrorPage = () => {
               <h2 className="p-4 text-[1.75rem] font-medium md:px-12 md:py-8 md:text-6xl">
                 Ha ocurrido un error.
               </h2>
-              <button className="rounded-md bg-gradient-to-r from-purple-400 to-blue-500 px-[1.2rem] py-3 font-semibold text-white hover:from-pink-500 hover:to-orange-500 md:px-6">
+              <Link
+                to={'/'}
+                className="rounded-md bg-gradient-to-r from-purple-400 to-blue-500 px-[1.2rem] py-3 font-semibold text-white hover:from-pink-500 hover:to-orange-500 md:px-6"
+              >
                 Home
-              </button>
+              </Link>
             </div>
           </div>
         </div>
