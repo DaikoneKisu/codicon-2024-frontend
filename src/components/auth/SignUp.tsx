@@ -46,54 +46,66 @@ export const SignUp = () => {
 
   return (
     <main className="m-5 flex justify-center">
-      <form onSubmit={handleSubmit}>
-        <div className="flex w-fit flex-col items-center border border-black p-5">
-          <h1>Sign Up</h1>
-          <fieldset className="my-4 rounded border border-black p-3">
-            <legend>Username</legend>
-            <input
-              className="border-b border-black"
-              type="text"
-              name="username"
-              placeholder="username"
-              value={newAccountInfo.username}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-          </fieldset>
-          <fieldset className="my-4 rounded border border-black p-3">
-            <legend>Email</legend>
-            <input
-              className="border-b border-black"
-              type="text"
-              name="email"
-              placeholder="johndoe@mail.com"
-              value={newAccountInfo.email}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-          </fieldset>
-          <fieldset className="my-4 rounded border border-black p-3">
-            <legend>Password</legend>
-            <input
-              className="border-b border-black"
-              type="password"
-              name="password"
-              placeholder="Type your password"
-              value={newAccountInfo.password}
-              minLength={8}
-              maxLength={32}
-              onChange={handleChange}
-              required
-            />
-          </fieldset>
-          <span className="my-3 flex gap-5">
-            <button type="submit">Sign Up</button>
-          </span>
+      <div className="flex min-h-screen w-full items-center justify-center">
+        <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md">
+          <h1 className="mb-4 text-center text-2xl font-bold">Create an Account</h1>
+          <form onSubmit={handleSubmit} action="#">
+            <div className="mb-4">
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
+                Email Address
+              </label>
+              <input
+                onChange={handleChange}
+                type="email"
+                id="email"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                Username
+              </label>
+              <input
+                onChange={handleChange}
+                type="text"
+                id="username"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                onChange={handleChange}
+                type="password"
+                id="password"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div className="mb-4 flex items-center justify-between">
+              <a
+                href="#"
+                className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Log In{' '}
+              </a>
+            </div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Login
+            </button>
+          </form>
         </div>
-      </form>
+      </div>
     </main>
   )
 }
