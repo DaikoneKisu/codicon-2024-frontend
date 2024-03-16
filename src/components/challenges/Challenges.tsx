@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Challenge, ChallengeCategory, ChallengeDifficulty, ChallengeType } from './challengetype.'
+import type { Challenge } from './challengetype'
+import { ChallengeCategory, ChallengeDifficulty, ChallengeType } from './challengesenums'
 
 export const Challenges = () => {
   const [challenges] = useState<Array<Challenge>>([
