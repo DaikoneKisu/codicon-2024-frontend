@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Participants } from './Participants'
 import { ParticipantsDataEstructure, Participant } from './type'
+import { useNavigate } from 'react-router-dom'
 
 //the id is a query param that will be used to fetch the participants from the backend
 export const SelectWinner = () => {
@@ -10,9 +11,12 @@ export const SelectWinner = () => {
   }
   const [winner, setWinner] = useState<Winner>({
     participantId: -1,
-    challengeId: 2
+    challengeId: 1
   })
+  const navigate = useNavigate()
   const [participants, setParticipants] = useState<Array<Participant>>([])
+  const [challengeTitle, setChallengeTitle] = useState<string>('')
+  const [challengeDescription, setchallengeDescription] = useState<string>('')
 
   useEffect(() => {
     const fetchData = (): Promise<ParticipantsDataEstructure> => {
@@ -25,6 +29,8 @@ export const SelectWinner = () => {
     const mapFromApiToParticipants = (
       apiResponse: ParticipantsDataEstructure
     ): Array<Participant> => {
+      setChallengeTitle(apiResponse.data.name)
+      setchallengeDescription(apiResponse.data.description)
       const {
         data: { players }
       } = apiResponse
@@ -78,12 +84,16 @@ export const SelectWinner = () => {
       participantId: -1,
       challengeId: winner.challengeId
     })
+    navigate('/dashboard')
   }
 
   return (
     <div className="grid w-full grid-cols-1 gap-6 px-4 py-12 md:grid-cols-3">
       <div className="flex items-center justify-start md:col-span-2">
-        <h1 className="text-3xl font-bold text-gray-900">Challenge Title</h1>
+        <h1 className="text-3xl font-bold text-gray-900">{challengeTitle} Challenge</h1>
+      </div>
+      <div className="flex items-center justify-start md:col-span-2">
+        <h3 className="text-2xl font-semibold text-gray-500">{challengeDescription}</h3>
       </div>
       <div className="flex items-center justify-end md:col-span-1">
         <button

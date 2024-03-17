@@ -20,5 +20,7 @@ export interface ParticipantsDataEstructure {
       createdAt: string
       updatedAt: string
     }>
+    name: string
+    description: string
   }
 }
