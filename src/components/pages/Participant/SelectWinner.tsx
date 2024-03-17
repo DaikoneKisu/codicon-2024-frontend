@@ -27,7 +27,8 @@ export const SelectWinner = () => {
       apiResponse: ParticipantsDataEstructure
     ): Array<Participant> => {
       return apiResponse.map((participantFromApi) => {
-        const { id, username, avatar, resource } = participantFromApi
+        const { id, username, resource } = participantFromApi
+        const avatar = `https://i.pravatar.cc/150?u=${username}`
         return {
           id,
           username,
