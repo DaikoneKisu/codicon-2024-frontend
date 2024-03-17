@@ -1,5 +1,22 @@
 import { useEffect, useState } from 'react'
 
+interface UserJson {
+  data: {
+    id: number
+    username: string
+    points: number
+    role: 'player' | 'admin'
+    ticketDiary: number
+    ticketWeekly: number
+    ticketMonthly: number
+    email: string
+    password: string
+    createdAt: string
+    updatedAt: string
+  }
+  message: string
+}
+
 interface User {
   username: string
   avatar: string
@@ -25,14 +42,34 @@ const emptyUser = {
 export const Profile = () => {
   const [user, setUser] = useState<User>(emptyUser)
 
-  // TODO: Fetch user data using its session token
-  // useEffect(() => {
-  //   fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/users`, {
-  //     method: 'GET',
-  //     headers: {
-
-  //     }
-  // })
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/users/myProfile`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${
+          document.cookie
+            .split(';')
+            .filter((cookie) => cookie.includes('auth='))[0]
+            ?.split('auth=')[1]
+            .trim() ?? ''
+        }`
+      }
+    })
+      .then((response) => response.json() as Promise<UserJson>)
+      .then(({ data }) =>
+        setUser({
+          username: data.username,
+          avatar: `https://i.pravatar.cc/150?u=${data.username}`,
+          points: data.points,
+          entries: {
+            toDailies: data.ticketDiary,
+            toWeeklies: data.ticketWeekly,
+            toMonthlies: data.ticketMonthly
+          }
+        })
+      )
+      .catch((error) => (import.meta.env.DEV ? void console.error(error) : ''))
+  }, [])
 
   return (
     <>
@@ -42,25 +79,33 @@ export const Profile = () => {
           alt="Avatar user"
           className="mx-auto w-10 rounded-full md:w-16"
         />
-        <div>
+        <div className="flex flex-col gap-1">
           <h2 className="text-center text-sm font-medium text-teal-500 md:text-lg">
             {user.username || 'nickname'}
           </h2>
-          <p className="text-center text-xs text-gray-500 md:text-sm">{user.points ?? 100}</p>
-          <p className="text-center text-xs text-gray-500 md:text-sm">
-            {user.entries?.toDailies || 3}{' '}
-            <span>
-              <DailyTicket />
-            </span>
-            {user.entries?.toWeeklies || 2}{' '}
-            <span>
-              <WeeklyTicket />
-            </span>
-            {user.entries?.toMonthlies || 1}{' '}
-            <span>
-              <MonthlyTicket />
-            </span>
+          <p className="mb-1 text-center text-xs text-gray-500 md:text-sm">
+            {user.points ?? 100} puntos
           </p>
+          <div className="flex justify-center gap-2 text-center text-xs text-gray-500 md:text-sm">
+            <div>
+              {user.entries?.toDailies || 3}{' '}
+              <span>
+                <DailyTicket />
+              </span>
+            </div>
+            <div>
+              {user.entries?.toWeeklies || 2}{' '}
+              <span>
+                <WeeklyTicket />
+              </span>
+            </div>
+            <div>
+              {user.entries?.toMonthlies || 1}{' '}
+              <span>
+                <MonthlyTicket />
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </>

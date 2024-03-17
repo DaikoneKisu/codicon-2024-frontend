@@ -7,13 +7,14 @@ export const LogOutButton = () => {
     document.cookie = 'auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
 
     navigate('/')
+    location.reload()
   }
 
   return (
     <button
       onClick={handleClick}
       type="button"
-      className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="w-full justify-center rounded-md px-2 py-2 text-center text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-blue-500 hover:text-base hover:text-white"
     >
       Cerrar sesión
     </button>

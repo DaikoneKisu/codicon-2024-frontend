@@ -19,16 +19,16 @@ export const ChallengeCard = ({ challenge }: { challenge: Challenge }) => {
   }
 
   return (
-    <article className="m-8 space-y-2 rounded-lg bg-white p-6 shadow-md">
+    <article className="m-8 mt-4 space-y-2 rounded-lg bg-white p-6 shadow-md">
       <div className="flex items-center justify-between">
         <h3 className="text-2xl font-bold text-gray-800">{challenge.name ?? 'Nombre reto'}</h3>
 
         <div className="flex items-center justify-end">
-          {challenge.category == 'Programming' && (
+          {challenge.category == 'programming' && (
             <HiDesktopComputer className="mr-2" fontSize={28} />
           )}
-          {challenge.category == 'Math' && <PiMathOperationsFill className="mr-2" fontSize={28} />}
-          {challenge.category == 'Fitness' && <IoFitness className="mr-2" fontSize={28} />}
+          {challenge.category == 'math' && <PiMathOperationsFill className="mr-2" fontSize={28} />}
+          {challenge.category == 'fitness' && <IoFitness className="mr-2" fontSize={28} />}
           <h4 className="font-bold">{challenge.category ?? '-'}</h4>
         </div>
       </div>

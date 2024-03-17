@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
 import './index.css'
-import { Root } from './routes/Root'
 import { ErrorPage } from './components/ErrorPage'
 import { Login } from './components/auth/Login'
 import { SignUp } from './components/auth/SignUp'
@@ -27,7 +26,12 @@ const Prueba = () => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <Dashboard />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/challenges',
+    element: <Dashboard />,
     errorElement: <ErrorPage />
   },
   {
@@ -43,10 +47,6 @@ const router = createBrowserRouter([
   {
     path: '/prueba',
     element: <Prueba />
-  },
-  {
-    path: '/dashboard',
-    element: <Dashboard />
   }
 ])
 
