@@ -11,8 +11,9 @@ export const SelectWinner = () => {
   }
   const [winner, setWinner] = useState<Winner>({
     participantId: -1,
-    challengeId: 1
+    challengeId: 3
   })
+
   const navigate = useNavigate()
   const [participants, setParticipants] = useState<Array<Participant>>([])
   const [challengeTitle, setChallengeTitle] = useState<string>('')
@@ -67,10 +68,8 @@ export const SelectWinner = () => {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_TOKEN}`
-          },
-          body: JSON.stringify({ winner })
+            Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+          }
         }
       )
     } catch (error) {
