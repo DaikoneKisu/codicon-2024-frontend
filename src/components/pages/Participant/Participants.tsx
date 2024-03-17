@@ -1,8 +1,4 @@
-interface Participant {
-  username: string
-  avatar: string
-  resource: string
-}
+import { Participant } from './type'
 
 export const Participants = ({ avatar, resource }: Participant) => {
   return (
