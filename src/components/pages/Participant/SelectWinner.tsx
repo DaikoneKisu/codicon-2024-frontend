@@ -16,17 +16,19 @@ export const SelectWinner = () => {
 
   useEffect(() => {
     const fetchData = (): Promise<ParticipantsDataEstructure> => {
-      return fetch('http://localhost:3000/users', {
+      return fetch(`${import.meta.env.VITE_PLAYER_CHALLENGE_ID}/${winner.challengeId}`, {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEwNjYwNTU1LCJleHAiOjE3MTA3NDY5NTV9.ouKoxGpgbqwo80squX7ZDmwfE5SK7pXKcLOMMS3bZeM'
+          Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
         }
       }).then((response) => response.json()) as Promise<ParticipantsDataEstructure>
     }
     const mapFromApiToParticipants = (
       apiResponse: ParticipantsDataEstructure
     ): Array<Participant> => {
-      return apiResponse.map((participantFromApi) => {
+      const {
+        data: { players }
+      } = apiResponse
+      return players.map((participantFromApi) => {
         const { id, username, resource } = participantFromApi
         const avatar = `https://i.pravatar.cc/150?u=${username}`
         return {
@@ -39,13 +41,13 @@ export const SelectWinner = () => {
     }
     fetchData()
       .then((apiResponse: ParticipantsDataEstructure) => {
-        const participants = mapFromApiToParticipants(apiResponse.data)
+        const participants = mapFromApiToParticipants(apiResponse)
         setParticipants(participants)
       })
       .catch((e) => {
         console.log(e)
       })
-  }, [])
+  }, [winner.challengeId])
 
   const handleWinner = async () => {
     if (winner.participantId === -1) {
@@ -55,13 +57,12 @@ export const SelectWinner = () => {
     //some things are hardcoded, when it should be dynamic, fix when i understand the backend
     try {
       await fetch(
-        `http://localhost:3000/playerChallenge/setWinner/${winner.challengeId}/${winner.participantId}  `,
+        `${import.meta.env.VITE_PLAYER_CHALLENGE_SET_WINNER}/${winner.challengeId}/${winner.participantId}`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEwNjYwNTU1LCJleHAiOjE3MTA3NDY5NTV9.ouKoxGpgbqwo80squX7ZDmwfE5SK7pXKcLOMMS3bZeM'
+            'Authorization': `Bearer ${import.meta.env.VITE_TOKEN}`
           },
           body: JSON.stringify({ winner })
         }

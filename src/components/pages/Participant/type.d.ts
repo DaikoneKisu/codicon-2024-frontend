@@ -4,22 +4,21 @@ export interface Participant {
   avatar: string
   resource: string
 }
-
-export type ParticipantsData = {
-  data: ParticipantsDataEstructure
+export interface ParticipantsDataEstructure {
+  data: {
+    players: Array<{
+      id: number
+      username: string
+      avatar: string
+      resource: string
+      role: string
+      ticketDiary: number
+      ticketWeekly: number
+      ticketMonthly: number
+      email: string
+      password: string
+      createdAt: string
+      updatedAt: string
+    }>
+  }
 }
-
-export type ParticipantsDataEstructure = Array<{
-  id: number
-  username: string
-  avatar: string
-  resource: string
-  role: string
-  ticketDiary: number
-  ticketWeekly: number
-  ticketMonthly: number
-  email: string
-  password: string
-  createdAt: string
-  updatedAt: string
-}>
