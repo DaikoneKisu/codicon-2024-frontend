@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 // import { Link } from "react-router-dom" this import will be used for the navigation
-import '../../index.css'
 
 /** Represents user credentials. */
 interface NewAccountInfo {
@@ -14,7 +14,7 @@ interface NewAccountInfo {
   password: string
 }
 
-/** Represents a login component. */
+/** Represents a signup component. */
 export const SignUp = () => {
   // Initialize state for credentials
   const [newAccountInfo, setNewAccountInfo] = useState<NewAccountInfo>({
@@ -22,6 +22,7 @@ export const SignUp = () => {
     email: '',
     password: ''
   })
+  const navigate = useNavigate()
 
   /**
    * Handles changes in the input fields.
@@ -41,20 +42,39 @@ export const SignUp = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    console.log('signed up succesfully')
+    const register = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newAccountInfo)
+        })
+
+        if (response.ok) {
+          navigate('/login')
+        }
+      } catch (error) {
+        if (import.meta.env.DEV) console.error(error)
+      }
+    }
+
+    void register()
   }
 
   return (
     <main className="m-5 flex justify-center">
       <div className="flex min-h-screen w-full items-center justify-center">
-        <div className="max-w-md rounded-lg bg-white px-8 py-6 shadow-md">
-          <h1 className="mb-4 text-center text-2xl font-bold">Create an Account</h1>
+        <div className="w-96 rounded-lg bg-white px-8 py-6 shadow-md">
+          <h1 className="mb-4 text-center text-2xl font-bold">Crea tu cuenta</h1>
           <form onSubmit={handleSubmit} action="#">
             <div className="mb-4">
               <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
-                Email Address
+                Correo electrónico
               </label>
               <input
+                name="email"
                 onChange={handleChange}
                 type="email"
                 id="email"
@@ -65,43 +85,37 @@ export const SignUp = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
-                Username
+                Nickname
               </label>
               <input
+                name="username"
                 onChange={handleChange}
                 type="text"
                 id="username"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Enter your username"
+                placeholder="Introduce tu nickname"
                 required
               />
             </div>
             <div className="mb-4">
               <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-700">
-                Password
+                Contraseña
               </label>
               <input
+                name="password"
                 onChange={handleChange}
                 type="password"
                 id="password"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Enter your password"
+                placeholder="Introduce tu contraseña"
                 required
               />
-            </div>
-            <div className="mb-4 flex items-center justify-between">
-              <a
-                href="#"
-                className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Log In{' '}
-              </a>
             </div>
             <button
               type="submit"
               className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Login
+              Crear cuenta
             </button>
           </form>
         </div>

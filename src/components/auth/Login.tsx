@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-// import { Link } from "react-router-dom" this import will be used for the navigation
-import '../../index.css'
+import { useNavigate } from 'react-router-dom'
 
 /** Represents user credentials. */
 interface Credentials {
@@ -22,6 +21,7 @@ export const Login = () => {
     password: '',
     showPassword: false
   })
+  const navigate = useNavigate()
 
   /**
    * Handles changes in the input fields.
@@ -41,9 +41,29 @@ export const Login = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // TO-DO: add the navigate() function from react-router-dom
-    // add validation for the credentials
-    console.log('auntenticated')
+    const login = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(credentials)
+        })
+
+        if (response.ok) {
+          const { token } = ((await response.json()) as { tokenData: { token: string } }).tokenData
+
+          document.cookie = `auth=${token}; path=/`
+
+          navigate('/')
+        }
+      } catch (error) {
+        if (import.meta.env.DEV) console.error(error)
+      }
+    }
+
+    void login()
   }
 
   /* const handleShowPassword = () => {
