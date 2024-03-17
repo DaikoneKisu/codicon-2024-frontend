@@ -2,13 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
-import { Root } from './routes/Root'
+// import { Root } from './routes/Root'
 import { ErrorPage } from './components/ErrorPage'
+import { SelectWinner } from './components/pages/Participant/SelectWinner'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
+    element: <SelectWinner />,
     errorElement: <ErrorPage />
   }
 ])
