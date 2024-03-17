@@ -15,7 +15,7 @@ const router = createBrowserRouter([
 ])
 
 //import { Login } from './components/auth/Login'
-import { Dashboard } from './components/Dashboard'
+// import { Dashboard } from './components/Dashboard'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
