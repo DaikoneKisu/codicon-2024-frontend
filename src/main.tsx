@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
 import './index.css'
 import { Root } from './routes/Root'
 import { ErrorPage } from './components/ErrorPage'
 import { Login } from './components/auth/Login'
 import { SignUp } from './components/auth/SignUp'
+
+const Prueba = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!document.cookie.includes('auth')) {
+      navigate('/login')
+    }
+  }, [])
+
+  return (
+    <div>
+      <h1>Prueba</h1>
+    </div>
+  )
+}
 
 const router = createBrowserRouter([
   {
@@ -22,10 +38,12 @@ const router = createBrowserRouter([
     path: '/register',
     element: <SignUp />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: '/prueba',
+    element: <Prueba />
   }
 ])
-
-//import { Login } from './components/auth/Login'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
