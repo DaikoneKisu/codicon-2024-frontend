@@ -6,6 +6,7 @@ import { ErrorPage } from './components/ErrorPage'
 import { Login } from './components/auth/Login'
 import { SignUp } from './components/auth/SignUp'
 import { Dashboard } from './components/Dashboard'
+// import { Podium } from './components/podium/Podium'
 
 const Prueba = () => {
   const navigate = useNavigate()
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     path: '/prueba',
     element: <Prueba />
   }
+  // {
+  //   path: '/ranking',
+  //   element: <Podium />
+  // }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

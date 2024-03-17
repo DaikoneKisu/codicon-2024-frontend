@@ -66,57 +66,52 @@ export const Login = () => {
     void login()
   }
 
-  /* const handleShowPassword = () => {
-     setCredentials({
-       ...credentials,
-       showPassword: !credentials.showPassword
-     })    
-   } this will be used for better ux/ui
-  */
-
   return (
-    <main className="m-5 flex justify-center">
-      <form onSubmit={handleSubmit}>
-        <div className="flex w-fit flex-col items-center border border-black p-5">
-          <h1>Login</h1>
-          <fieldset className="my-4 rounded border border-black p-3">
-            <legend>Username</legend>
-            {/*<span className="material-symbols-outlined float-left">person</span> */}
-            <input
-              className="border-b border-black"
-              type="text"
-              name="username"
-              placeholder="karthuspentakill"
-              value={credentials.username}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-          </fieldset>
-          <fieldset className="flex rounded border border-black p-3">
-            <legend>Password</legend>
-            {/*<span className="material-symbols-outlined">lock</span>*/}
-            <input
-              className="border-b border-black"
-              type={credentials.showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Type your password"
-              value={credentials.password}
-              minLength={8}
-              maxLength={32}
-              onChange={handleChange}
-              required
-            />
-            {/* credentials.showPassword ? 
-            <button type="button" className="material-symbols-outlined" onClick={ handleShowPassword } >visibility</button> : 
-  <button type="button" className="material-symbols-outlined" onClick={ handleShowPassword } >visibility_off</button> */}
-          </fieldset>
-          <span className="my-3 flex gap-5">
-            <button type="submit">Sign In</button>
-            {/* {<Link to="/"> <button >Sign Up</button> </Link>} */}
-          </span>
+    <main className="flex justify-center bg-backgroundColor">
+      <div className="flex min-h-screen w-full items-center justify-center">
+        <div className="w-96 rounded-lg bg-white px-8 py-6 shadow-md">
+          <h1 className="mb-4 text-center text-2xl font-bold">Inicia Sesion</h1>
+
+          <form onSubmit={handleSubmit} action="#">
+            <div className="mb-4">
+              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                Usuario
+              </label>
+              <input
+                name="username"
+                onChange={handleChange}
+                type="text"
+                id="username"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="Nombre de Usuario"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-700">
+                Contraseña
+              </label>
+              <input
+                name="password"
+                onChange={handleChange}
+                type="password"
+                id="password"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                placeholder="********"
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md border border-transparent bg-primaryColor px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Iniciar Sesion
+            </button>
+          </form>
         </div>
-      </form>
+      </div>
     </main>
   )
 }

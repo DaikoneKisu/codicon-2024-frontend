@@ -64,10 +64,11 @@ export const SignUp = () => {
   }
 
   return (
-    <main className="m-5 flex justify-center">
+    <main className="flex justify-center bg-backgroundColor">
       <div className="flex min-h-screen w-full items-center justify-center">
         <div className="w-96 rounded-lg bg-white px-8 py-6 shadow-md">
-          <h1 className="mb-4 text-center text-2xl font-bold">Crea tu cuenta</h1>
+          <h1 className="mb-4 text-center text-2xl font-bold">Registrate</h1>
+
           <form onSubmit={handleSubmit} action="#">
             <div className="mb-4">
               <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
@@ -83,9 +84,10 @@ export const SignUp = () => {
                 required
               />
             </div>
+
             <div className="mb-4">
               <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
-                Nickname
+                Usuario
               </label>
               <input
                 name="username"
@@ -93,10 +95,11 @@ export const SignUp = () => {
                 type="text"
                 id="username"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Introduce tu nickname"
+                placeholder="Nombre de Usuario"
                 required
               />
             </div>
+
             <div className="mb-4">
               <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-700">
                 Contraseña
@@ -107,13 +110,14 @@ export const SignUp = () => {
                 type="password"
                 id="password"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
-                placeholder="Introduce tu contraseña"
+                placeholder="********"
                 required
               />
             </div>
+
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="flex w-full justify-center rounded-md border border-transparent bg-primaryColor px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Crear cuenta
             </button>
