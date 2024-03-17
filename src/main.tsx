@@ -6,6 +6,7 @@ import { Root } from './routes/Root'
 import { ErrorPage } from './components/ErrorPage'
 import { Login } from './components/auth/Login'
 import { SignUp } from './components/auth/SignUp'
+import { Dashboard } from './components/Dashboard'
 
 const Prueba = () => {
   const navigate = useNavigate()
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: '/prueba',
     element: <Prueba />
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />
   }
 ])
 
