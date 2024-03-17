@@ -32,11 +32,51 @@ export const SideNavBar = () => {
             <span className="">Retos</span>
           </Link>
           <Link
+            to="/"
+            className="rounded-md px-2 py-2 text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-teal-500 hover:text-base hover:text-white"
+          >
+            <svg
+              className="inline-block h-6 w-6 fill-current"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+            </svg>
+            <span className="">Ranking</span>
+          </Link>
+          <Link
+            to="/"
+            className="rounded-md px-2 py-2 text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-teal-500 hover:text-base hover:text-white"
+          >
+            <svg
+              className="inline-block h-6 w-6 fill-current"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+            </svg>
+            <span className="">El podio</span>
+          </Link>
+          <Link
             to="/login"
             className="w-fit justify-center rounded-md px-2 py-2 text-center text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-blue-500 hover:text-base hover:text-white"
           >
-            <span className="">Retanos</span>
+            <span className="">Inicia sesión</span>
           </Link>
+          <Link
+            to="/register"
+            className="w-fit justify-center rounded-md px-2 py-2 text-center text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-blue-500 hover:text-base hover:text-white"
+          >
+            <span className="">Crea tu cuenta</span>
+          </Link>
+          <button
+            type="button"
+            className="w-fit justify-center rounded-md px-2 py-2 text-center text-sm font-medium text-gray-700 transition duration-150 ease-in-out hover:bg-blue-500 hover:text-base hover:text-white"
+          >
+            <span className="">Cierra sesión</span>
+          </button>
         </div>
       </div>
     </div>
